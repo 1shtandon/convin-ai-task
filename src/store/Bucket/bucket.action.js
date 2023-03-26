@@ -22,12 +22,13 @@ const deleteBucket = (bucketList , bucketId) => {
     return [...newBucketList];
 }
 
+
 export const addBucket = (bucketName , bucketList) => {
     const newBucketList = setBucketList(bucketList, bucketName);
     return createAction(BUCKET_ACTION_TYPES.SET_BUCKET_LIST, newBucketList);
 }
 
-export const editBucket = (bucketList , bucketId , newBucketName) => {
+export const editBucketAction = (bucketList , bucketId , newBucketName) => {
     const newBucketList = editBucketName(bucketList , bucketId , newBucketName);
     return createAction(BUCKET_ACTION_TYPES.SET_BUCKET_LIST, newBucketList);
 }

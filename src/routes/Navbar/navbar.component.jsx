@@ -8,7 +8,7 @@ import {
     selectBucketList
 } from '../../store/Bucket/bucket.selector';
 
-import { addBucket } from '../../store/Bucket/bucket.action';
+import { addBucket , editBucketAction , deleteBucketAction} from '../../store/Bucket/bucket.action';
 
 
 const NavBar = () => {
@@ -53,11 +53,30 @@ const NavBar = () => {
                     key: subKey,
                     icon: <VideoCameraOutlined />,
                     label: (
-                        <a href={`/bucket/${subKey}`}>Bucket {subKey}</a>
+                        <a href={`/bucket/${subKey}`}>{bucket.name}</a>
                     ),
                     onClick: () => {
                         console.log('click', subKey);
                     },
+                    // add edit and delete bucket
+                    children: [
+                        {
+                            key: 'edit',
+                            label: 'Edit Bucket',
+                            onClick: () => {
+                                
+                                dispatch(editBucketAction( bucketList, bucket.id, 'Newname' ));
+                            }
+                        },
+                        {
+                            key: 'delete',
+                            label: 'Delete Bucket',
+                            onClick: () => {
+                                dispatch(deleteBucketAction( bucketList, bucket.id  ));
+                            }
+                        }
+                    ]
+
                 };
             }),
         };
