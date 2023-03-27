@@ -1,0 +1,23 @@
+.bucket-name {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #000;
+  margin-bottom: 0.5rem;
+}
+
+.cardlist {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.add-card-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #000;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    right: 10;
+}

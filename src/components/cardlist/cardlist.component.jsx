@@ -1,10 +1,11 @@
 import Mycard from "../card/card.component";
+import "./cardlist.style.css";
 
 const CardList = ({ cards }) => {
     return (
-        <div>
+        <div className="cardlist">
             {cards.map((card, index) => (
-                <Mycard key={index} name={card.name} link={card.link} />
+                <Mycard key={index} card={card} className="cards"/>
             ))}
         </div>
     );

@@ -7,9 +7,9 @@ export const selectBucketList = createSelector(
     bucket => bucket.bucketList
 );
 export const selectBucketById = (bucketId) =>
-    createSelector([selectBucketList],
-        (bucketList) =>
-            bucketList.find((bucket) => bucket.id === Number(bucketId))
+    createSelector([selectBucket],
+        (bucket) =>
+            bucket.bucketList.find((bucket) => bucket.id === Number(bucketId))
         
     );
 

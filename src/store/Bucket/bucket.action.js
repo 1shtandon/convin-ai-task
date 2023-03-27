@@ -27,37 +27,33 @@ const addCardToBucket = (bucketList, bucketId, cardName, cardLink) => {
     bucket.cards.push({
         id: bucket.cards.length ? bucket.cards[bucket.cards.length - 1].id + 1 : 0,
         name: cardName,
-        link: cardLink
+        link: cardLink,
+        bucketID: bucketId
     });
     return [...bucketList];
 }
 
-const editCardInBucket = (bucketList, bucketId, cardId, newCardName, newCardLink) => {
-    const bucketIndex = bucketList.findIndex(bucket => bucket.id === bucketId);
-    const bucket = bucketList[bucketIndex];
-    const cardIndex = bucket.cards.findIndex(card => card.id === cardId);
-    const card = bucket.cards[cardIndex];
+const editCardInBucket = (bucketList, bucketId, cardId, newCardName, newCardLink , newBucketId) => {
 
-    const newBucketList = [...bucketList];
-    newBucketList[bucketIndex] = {
-        ...bucket,
-        cards: [
-            ...bucket.cards.slice(0, cardIndex),
-            {
-                ...card,
-                name: newCardName,
-                newCardLink,
-            },
-            ...bucket.cards.slice(cardIndex + 1)
-        ]
+    if (bucketId === newBucketId) {
+        const bucket = bucketList.find(bucket => bucket.id === bucketId);
+        const card = bucket.cards.find(card => card.id === cardId);
+        card.name = newCardName;
+        card.link = newCardLink;
+        return [...bucketList];
     }
-    return newBucketList;
+    else {
+        const newBucketList = deleteCardFromBucket(bucketList, bucketId, cardId);
+        const newBucketList2 = addCardToBucket(newBucketList, newBucketId, newCardName, newCardLink);
+        return [...newBucketList2];
+    }
 }
 
 
 const deleteCardFromBucket = (bucketList, bucketId, cardId) => {
     const bucketIndex = bucketList.findIndex(bucket => bucket.id === bucketId);
     const bucket = bucketList[bucketIndex];
+    
     const cardIndex = bucket.cards.findIndex(card => card.id === cardId);
 
     const newBucketList = [...bucketList];
@@ -92,8 +88,8 @@ export const addCardAction = (bucketList, bucketId, cardName, cardLink) => {
     return createAction(BUCKET_ACTION_TYPES.SET_BUCKET_LIST, newBucketList);
 }
 
-export const editCardAction = (bucketList, bucketId, cardId, newCardName, newCardLink) => {
-    const newBucketList = editCardInBucket(bucketList, bucketId, cardId, newCardName, newCardLink);
+export const editCardAction = (bucketList, bucketId, cardId, newCardName, newCardLink , newBucketId) => {
+    const newBucketList = editCardInBucket(bucketList, bucketId, cardId, newCardName, newCardLink , newBucketId);
     return createAction(BUCKET_ACTION_TYPES.SET_BUCKET_LIST, newBucketList);
 }
 

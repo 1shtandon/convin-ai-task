@@ -5,35 +5,70 @@ import { Card } from 'antd';
 import { redirect, useHref } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { addCardAction, editCardAction, deleteCardAction } from '../../store/Bucket/bucket.action';
-
+import { useState } from 'react';
+import "./card.style.css"
+import EditCardForm from '../edit card form/edit-card-form.component';
 
 const { Meta } = Card;
 
 
-const Mycard = ({ name, link }) => {
+const Mycard = ({ card }) => {
+    const { name, link } = card;
     const dispatch = useDispatch();
     const bucketList = useSelector(selectBucketList);
 
+    const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+
+    const onClickEdit = () => {
+        setIsEditModalOpen(true);
+    }
+
+    const handleOkEdit = () => {
+        setIsEditModalOpen(false);
+    }
+
+    const handleCancelEdit = () => {
+        setIsEditModalOpen(false);
+    }
+
+    const handleDelete = () => {
+        console.log(card)
+        console.log(bucketList, card.bucketID, card.id);
+        dispatch(deleteCardAction(bucketList, card.bucketID, card.id));
+    }
+
     return (
-        <Card
-            hoverable
-            style={{
-                width: 300,
-            }}
+        <div>
+            <Card className='card'
+                hoverable
+                style={{
+                    width: 300,
+                }}
 
-            actions={[
-                <PlayCircleOutlined key="play" />,
+                actions={[
+                    <PlayCircleOutlined key="play" />,
 
-                <EditOutlined key="edit" />,
+                    <EditOutlined key="edit"
+                        onClick={onClickEdit}
+                    />,
 
-                <DeleteOutlined key="delete" />
-            ]}
-        >
-            <Meta
-                title={name}
-                description={link}
+                    <DeleteOutlined key="delete"
+                        onClick={handleDelete}
+                    />
+                ]}
+            >
+                <Meta
+                    title={name}
+                    description={link}
+                />
+            </Card>
+            <EditCardForm
+                isModalOpen={isEditModalOpen}
+                handleOk={handleOkEdit}
+                handleCancel={handleCancelEdit}
+                card={card}
             />
-        </Card>
+        </div>
     );
 };
 export default Mycard;

@@ -10,6 +10,7 @@ import {
 } from '../../store/Bucket/bucket.selector';
 
 import { addBucket, editBucketAction, deleteBucketAction } from '../../store/Bucket/bucket.action';
+import "./navbar.style.css"
 
 
 const NavBar = () => {
@@ -75,7 +76,7 @@ const NavBar = () => {
                     // add edit and delete bucket
                     children: [
                         {
-                            key: 'edit',
+                            key: `edit ${subKey}`,
                             label: 'Edit Bucket',
                             onClick: () => {
                                 // set the bucket id to edit
@@ -85,7 +86,7 @@ const NavBar = () => {
                             }
                         },
                         {
-                            key: 'delete',
+                            key: `delete ${subKey}`,
                             label: 'Delete Bucket',
                             onClick: () => {
                                 dispatch(deleteBucketAction(bucketList, bucket.id));
@@ -128,7 +129,7 @@ const NavBar = () => {
     return (
         <Layout
             style={{
-                height: '100vh'
+                height: '100vh',
             }}
         >
             <Header className="header">
@@ -136,10 +137,11 @@ const NavBar = () => {
                 <Menu theme="dark" mode="horizontal" items={items1} />
             </Header>
             <Layout>
-                <Sider
+                <Sider className='sider'
                     width={200}
                     style={{
                         background: colorBgContainer,
+                        backgroundColor: '#000',
                     }}
                 >
                     <Menu
@@ -168,8 +170,7 @@ const NavBar = () => {
 
                     <Content
                         style={{
-                            padding: 24,
-                            margin: 0,
+                            padding: 50,
                             background: colorBgContainer,
                         }}
                     >

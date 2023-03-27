@@ -1,0 +1,9 @@
+
+.cards {
+    /* show 4 cards in a row */
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+}

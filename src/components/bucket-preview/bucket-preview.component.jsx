@@ -6,10 +6,10 @@ import CardList from "../cardlist/cardlist.component";
 import { selectBucketById } from "../../store/Bucket/bucket.selector";
 import { Button } from "antd";
 import AddCardForm from "../add card form/add-card-form.component";
+import "./bucket-preview.styles.css"
 
 const BucketPreview = () => {
     const { bucketId } = useParams();
-    console.log(bucketId);
     const bucket = useSelector(selectBucketById(bucketId));
     const [isAddModalOpen, setIsAddModalOpen] = useState(false);
 
@@ -27,19 +27,19 @@ const BucketPreview = () => {
 
     return (
 
-        <>
-            <h1>{bucket.name}</h1>
+        <div className="content-area">
+            <h1 className="bucket-name" >{bucket.name}</h1>
             <AddCardForm
                 isModalOpen={isAddModalOpen}
                 handleOk={handleOkAdd}
                 handleCancel={handleCancelAdd}
             />
-
-            <CardList cards={bucket.cards} />
-            <Button type="primary" onClick={onClickAdd} >
+            <Button type="primary" onClick={onClickAdd} className="add-card-btn">
                 Add Card
             </Button>
-        </>
+            <CardList cards={bucket.cards} className="cardlist" />
+
+        </div>
 
     );
 };
