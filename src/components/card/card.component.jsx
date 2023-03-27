@@ -1,10 +1,9 @@
 import { EditOutlined, DeleteOutlined, PlayCircleOutlined } from '@ant-design/icons';
 import { useSelector } from 'react-redux';
 import { selectBucketList } from '../../store/Bucket/bucket.selector';
-import { Card } from 'antd';
-import { redirect, useHref } from 'react-router-dom';
+import { Card, Modal } from 'antd';
 import { useDispatch } from 'react-redux';
-import { addCardAction, editCardAction, deleteCardAction } from '../../store/Bucket/bucket.action';
+import { deleteCardAction } from '../../store/Bucket/bucket.action';
 import { useState } from 'react';
 import "./card.style.css"
 import EditCardForm from '../edit card form/edit-card-form.component';
@@ -18,6 +17,17 @@ const Mycard = ({ card }) => {
     const bucketList = useSelector(selectBucketList);
 
     const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+    const [isModalVisible, setIsModalVisible] = useState(false);
+
+    const showModal = () => {
+        setIsModalVisible(true);
+    };
+
+    const handleCancel = () => {
+        setIsModalVisible(false);
+    };
+
+
 
     const onClickEdit = () => {
         setIsEditModalOpen(true);
@@ -37,6 +47,29 @@ const Mycard = ({ card }) => {
         dispatch(deleteCardAction(bucketList, card.bucketID, card.id));
     }
 
+    // check if link is youtube link
+    const isYoutubeLink = (link) => {
+        if (link.includes('youtube.com') || link.includes('youtu.be')) {
+            return true;
+        }
+        return false;
+    }
+
+    const modifyLink = (link) => {
+        if (isYoutubeLink(link)) {
+            if (link.includes('youtu.be')) {
+                const videoId = link.match(/youtu\.be\/([^?]+)/)[1];
+                return `https://www.youtube.com/embed/${videoId}`;
+            }
+            else {
+                const videoId = link.split('v=')[1];
+                console.log(videoId);
+                return `https://www.youtube.com/embed/${videoId}`;
+            }
+        }
+        return link;
+    }
+
     return (
         <div>
             <Card className='card'
@@ -46,7 +79,10 @@ const Mycard = ({ card }) => {
                 }}
 
                 actions={[
-                    <PlayCircleOutlined key="play" />,
+                    <PlayCircleOutlined key="play"
+                        onClick={showModal}
+
+                    />,
 
                     <EditOutlined key="edit"
                         onClick={onClickEdit}
@@ -61,6 +97,19 @@ const Mycard = ({ card }) => {
                     title={name}
                     description={link}
                 />
+
+                <Modal
+                    className='modal'
+                    title="Media Player"
+                    open={isModalVisible}
+                    onCancel={handleCancel}
+                    footer={[null]}
+                    width="50%"
+                    bodyStyle={{height: "30em"}}
+                >
+                    <iframe width="100%" height="100%" src={modifyLink(link)} title="media player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
+
+                </Modal>
             </Card>
             <EditCardForm
                 isModalOpen={isEditModalOpen}

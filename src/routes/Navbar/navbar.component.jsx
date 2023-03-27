@@ -34,6 +34,12 @@ const NavBar = () => {
     const dispatch = useDispatch();
     const items1 = [
         {
+            key: '0',
+            label: (
+                "Convin"
+            ),
+        },
+        {
             key: '1',
             label: (
                 <a href='/'>Home</a>

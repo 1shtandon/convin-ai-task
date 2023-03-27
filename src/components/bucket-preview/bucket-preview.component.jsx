@@ -1,17 +1,23 @@
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import CardList from "../cardlist/cardlist.component";
 import { selectBucketById } from "../../store/Bucket/bucket.selector";
 import { Button } from "antd";
-import AddCardForm from "../add card form/add-card-form.component";
+import AddCardForm from "../add-card-form/add-card-form.component";
 import "./bucket-preview.styles.css"
 
 const BucketPreview = () => {
     const { bucketId } = useParams();
     const bucket = useSelector(selectBucketById(bucketId));
     const [isAddModalOpen, setIsAddModalOpen] = useState(false);
+    const navigate = useNavigate();
+
+    if (!bucket) {
+        navigate("/");
+        return null;
+    }
 
     const onClickAdd = () => {
         setIsAddModalOpen(true);
