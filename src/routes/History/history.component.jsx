@@ -13,7 +13,7 @@ const History = () => {
             {/* button to clear histoy */}
             <Button danger onClick={() => dispatch(deleteHistory(historyList))}>Delete History</Button>
 
-            <div className="history-list">
+            <div className="history-list" style={{display: "flex", gap: 15 , margin : "20px" , flexWrap : "wrap"}}>
                 {
                     historyList.map((card) => (
                         <HistoryCard className="history-card"
