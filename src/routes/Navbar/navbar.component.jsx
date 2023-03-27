@@ -1,5 +1,6 @@
 import { UserOutlined, VideoCameraOutlined, VideoCameraAddOutlined } from '@ant-design/icons';
-import { Breadcrumb, Layout, Menu, Modal, theme, Input } from 'antd';
+import { Layout, Menu, Modal, theme, Input } from 'antd';
+// import { ReactComponent as Logo } from "../../assets/convin.svg";
 import React from 'react';
 import Mycard from '../../components/card/card.component';
 import { Outlet } from 'react-router-dom';
@@ -33,12 +34,6 @@ const NavBar = () => {
 
     const dispatch = useDispatch();
     const items1 = [
-        {
-            key: '0',
-            label: (
-                "Convin"
-            ),
-        },
         {
             key: '1',
             label: (
@@ -79,15 +74,12 @@ const NavBar = () => {
                     onClick: () => {
                         console.log('click', subKey);
                     },
-                    // add edit and delete bucket
                     children: [
                         {
                             key: `edit ${subKey}`,
                             label: 'Edit Bucket',
                             onClick: () => {
-                                // set the bucket id to edit
                                 setBucketToEdit(bucket.id);
-                                // show modal
                                 showModal();
                             }
                         },
@@ -111,16 +103,14 @@ const NavBar = () => {
         console.log('inputValue', inputValue);
         // dispatch edit bucket action
         setIsModalOpen(false);
-        if (inputValue == '' || inputValue == null)
+        if (inputValue === '' || inputValue === null)
             alert('Please enter a valid bucket name');
         else
             dispatch(editBucketAction(bucketList, bucketToEdit, inputValue));
 
     };
 
-    // handle input change
     const handleInputChange = (e) => {
-        // if empty string then return
         setInputValue(e.target.value);
     };
 
@@ -138,9 +128,9 @@ const NavBar = () => {
                 height: '100vh',
             }}
         >
-            <Header className="header">
-                <div className="logo" />
+            <Header className="header" style={{ width: "100%", height: "6%" }}>
                 <Menu theme="dark" mode="horizontal" items={items1} />
+
             </Header>
             <Layout>
                 <Sider className='sider'

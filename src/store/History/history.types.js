@@ -1,0 +1,3 @@
+export const HISTORY_ACTION_TYPES = {
+    SET_HISTORY_LIST: 'history/SET_HISTORY_LIST',
+}

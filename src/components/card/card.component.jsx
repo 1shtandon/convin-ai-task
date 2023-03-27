@@ -7,12 +7,14 @@ import { deleteCardAction } from '../../store/Bucket/bucket.action';
 import { useState } from 'react';
 import "./card.style.css"
 import EditCardForm from '../edit card form/edit-card-form.component';
+import { addToHistory } from '../../store/History/history.action';
 
 const { Meta } = Card;
 
 
 const Mycard = ({ card }) => {
-    const { name, link } = card;
+    const { cardId , name, link , bucketID} = card;
+    console.log(card)
     const dispatch = useDispatch();
     const bucketList = useSelector(selectBucketList);
 
@@ -20,6 +22,7 @@ const Mycard = ({ card }) => {
     const [isModalVisible, setIsModalVisible] = useState(false);
 
     const showModal = () => {
+        dispatch(addToHistory(card));
         setIsModalVisible(true);
     };
 
