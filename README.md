@@ -1,70 +1,44 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Convin Frontend Task
 
-## Available Scripts
 
-In the project directory, you can run:
+This application allows users to create, delete, and edit cards containing video or mp3 links. Each card can be categorized under a bucket, which the user can name according to their preferences. Additionally, users can move cards from one bucket to another and keep track of the links they have played through a history tab.
 
-### `npm start`
+## Getting Started
+To use this application, follow these steps:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Clone this repository to your local machine.
+Navigate to the project directory and run npm install to install the required dependencies.
+Run npm start to start the development server.
+The application should now be running on http://localhost:3000/.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+The site is also deployed on netlify. Link is given in the repository.
 
-### `npm test`
+## Usage
+Once you have the application running, you can use the following functionalities:
+### Create/Edit/Delete Buckets
+Buckets dropdown is provided as a sidebar. Adding, editing and deleting them is implemented there itself.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Creating a card
+To create a new card, click on the "Add Card" button. Fill in the required fields, including the card name, video/mp3 link, and the bucket. Click "Ok" to create the card.
 
-### `npm run build`
+### Editing a card
+To edit an existing card, click on the card you want to edit. This will open a modal with the card's details. Edit the required fields and click "Ok" to save the changes.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Deleting a card
+To delete a card, click on the card you want to delete.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Moving a card
+This functionality is provided while editing card itself to move a card in any given bucket.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Viewing history
+To view your history, click on the "History" tab. This will display a list of all the links you have played, including the card name, link, and time played.
 
-### `npm run eject`
+### Technologies Used
+* React.js - A popular JavaScript library for building user interfaces.
+* Ant Design (antd) - A UI library for React that provides pre-built components and styling.
+* Redux - A predictable state container for JavaScript apps.
+* Redux Thunk - A middleware for Redux that allows for asynchronous actions.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Conclusion
+This application provides a simple and efficient way to manage your video/mp3 links. Feel free to modify the application according to your preferences and needs. If you have any issues or suggestions, please submit them in the issues section of this repository.
